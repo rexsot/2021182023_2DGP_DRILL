@@ -2,7 +2,6 @@ from pico2d import *
 import math
 
 open_canvas()
-
 grass = load_image('grass.png')
 character = load_image('character.png')
 
@@ -72,8 +71,8 @@ def movecir():
         c += 0.1
     
     
-
-#moverec()
-movecir()
+while(1):
+    moverec()
+    movecir()
 
 close_canvas()
