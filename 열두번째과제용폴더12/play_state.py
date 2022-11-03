@@ -4,7 +4,8 @@ import game_world
 
 from grass import Grass
 from boy import Boy
-from boy import Ball
+from ball import Ball
+
 
 boy = None
 grass = None
@@ -22,13 +23,13 @@ def handle_events():
 
 # 초기화
 def enter():
-    global boy, grass, ball
+    global boy, grass
     boy = Boy()
     grass = Grass()
-    ball = Ball()
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
-
+    #game_world.add_object(grass, 2)
+    
 
 # 종료
 def exit():
@@ -40,7 +41,8 @@ def update():
 
 def draw_world():
     for game_object in game_world.all_objects():
-        game_object.draw()
+            game_object.draw()
+        
 
 
 def draw():

@@ -1,5 +1,6 @@
 from pico2d import *
 import game_world
+from ball import Ball
 
 
 #1 : 이벤트 정의
@@ -103,26 +104,11 @@ next_state = {
     SLEEP: {RU: RUN, LU: RUN, RD: RUN, LD: RUN, SPACE: IDLE}
 }
 
-class Ball:
-    image = None
-
-    def __init__(self, x = 800, y = 300, velocity = 1):
-        if Ball.image == None:
-            Ball.image = load_image('ball21x21.png')
-        self.x, self.y, self.velocity = x, y, velocity
-
-    def draw(self):
-        self.image.draw(self.x, self.y)
-
-    def update(self):
-        self.x += self.velocity
-        if self.x < 25 or self.x > 800 - 25:
-            game_world.remove_object(self)
 
 class Boy:
 
     def __init__(self):
-        self.x, self.y = 800 // 2, 90
+        self.x, self.y = 800 // 2, 50
         self.frame = 0
         self.dir, self.face_dir = 0, 1
         self.image = load_image('animation_sheet.png')
@@ -157,5 +143,5 @@ class Boy:
 
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.face_dir * 2)
-        game_world.add_object(ball, 1)
+        game_world.add_object(ball, 3)
 
