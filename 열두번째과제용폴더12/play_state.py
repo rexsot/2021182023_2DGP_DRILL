@@ -6,10 +6,6 @@ from grass import Grass
 from boy import Boy
 from ball import Ball
 
-
-boy = None
-grass = None
-
 def handle_events():
     events = get_events()
     for event in events:
@@ -20,15 +16,20 @@ def handle_events():
         else:
             boy.handle_event(event)
 
+boy = None
+grass = None
+grass2 = None
 
 # 초기화
 def enter():
-    global boy, grass
+    global boy, grass, grass2
     boy = Boy()
     grass = Grass()
+    grass2 = Grass()
+    grass2.y = 15
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
-    #game_world.add_object(grass, 2)
+    game_world.add_object(grass2, 2)
     
 
 # 종료
