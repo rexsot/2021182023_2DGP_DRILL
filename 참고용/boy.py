@@ -13,11 +13,10 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LEFT): LU
 }
 
-
 #2 : 상태의 정의
 class IDLE:
     @staticmethod
-    def enter(self,event):
+    def enter(self, event):
         print('ENTER IDLE')
         self.dir = 0
         self.timer = 1000
@@ -26,7 +25,6 @@ class IDLE:
     def exit(self, event):
         print('EXIT IDLE')
 
-
     @staticmethod
     def do(self):
         self.frame = (self.frame + 1) % 8
@@ -34,14 +32,12 @@ class IDLE:
         if self.timer == 0:
             self.add_event(TIMER)
 
-
     @staticmethod
     def draw(self):
         if self.face_dir == 1:
             self.image.clip_draw(self.frame * 100, 300, 100, 100, self.x, self.y)
         else:
             self.image.clip_draw(self.frame * 100, 200, 100, 100, self.x, self.y)
-
 
 class RUN:
     def enter(self, event):
@@ -128,9 +124,6 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
-        #self.font.draw(self.x - 60, self.y + 50, '(Time: %3.2f)' % get_time(), (255, 255, 0))
-
-
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -148,5 +141,5 @@ class Boy:
     def get_bb(self):
         return self.x - 15, self.y - 40, self.x + 15, self.y + 40
 
-    def handle_collision(self, other, group): # 소년이 공에 박았을 때
+    def handle_collision(self, other, group): # 소년이 박았을 때
         pass

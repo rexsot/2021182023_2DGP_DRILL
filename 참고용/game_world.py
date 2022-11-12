@@ -1,10 +1,7 @@
-
 # layer 0: Background Objects
 # layer 1: Foreground Objects
 objects = [[], []]
 
-# collision info
-# velue [ [boy], [ball1, ball2...] ]
 collision_group = dict()
 
 def add_object(o, depth):

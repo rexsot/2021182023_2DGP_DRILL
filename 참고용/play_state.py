@@ -10,7 +10,6 @@ boy = None
 grass = None
 balls = []
 
-
 def handle_events():
     events = get_events()
     for event in events:
@@ -21,7 +20,6 @@ def handle_events():
         else:
             boy.handle_event(event)
 
-
 # 초기화
 def enter():
     global boy, grass
@@ -29,13 +27,13 @@ def enter():
     grass = Grass()
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
+
     global balls
     balls = [Ball() for i in range(10)] + [BigBall() for i in range(10)]
     game_world.add_objects(balls, 1)
 
     # 충돌 정보를 등록
     game_world.add_collision_pairs(boy, balls, 'boy:ball')
-
 
 
 # 종료
@@ -54,17 +52,11 @@ def update():
     for ball in balls:
         if collide(grass, ball):
             ball.stop()
-    # for ball in balls.copy(): # 안전하게 복사본을 쓰자
-    #     if collide(boy, ball):
-    #         balls.remove(ball) # balls에서도 지워야 한다
-    #         game_world.remove_object(ball) # 그렇지 않으면 balls에서 NULL로 남아 오류가 생긴다
-
 
 def draw_world():
     for game_object in game_world.all_objects():
         game_object.draw()
         draw_rectangle(*game_object.get_bb())
-
 
 def draw():
     clear_canvas()
@@ -79,7 +71,6 @@ def resume():
 
 def test_self():
     import play_state
-
     pico2d.open_canvas()
     game_framework.run(play_state)
     pico2d.clear_canvas()
@@ -92,7 +83,6 @@ def collide(a, b):
     if top_a < bottom_b: return False
     if bottom_a > top_b: return False
     return True # 충돌
-
 
 if __name__ == '__main__':
     test_self()
